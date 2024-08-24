@@ -2,8 +2,8 @@
 ## challenge 10
  
 *Three* new **tools** :
- - SQLite, 
- - SQLAlchemy, and 
+ - SQLite 
+ - SQLAlchemy and 
  - Flask. 
 
  ***
@@ -17,15 +17,13 @@
  >>
  >>- Perform create, read, update, delete (CRUD) operations on data in a SQL database by using the SQLAlchemy object-relational mapper (ORM).
 
- Connect to a SQL database by using SQLAlchemy.
+ 1. Connect to a SQL database by using SQLAlchemy.
 
-Perform basic SQL queries by using conn.execute().
+2. Perform basic SQL queries by using conn.execute().
 
-Create Python classes and objects.
+3. Create Python classes and objects.
 
-Perform create, read, update, delete (CRUD) operations on data in a SQL database by using the SQLAlchemy object-relational mapper (ORM).
-
-
+4. Perform create, read, update, delete (CRUD).
 
 ### Analyze and Explore the Climate Data
 
@@ -45,14 +43,8 @@ Perform a precipitation analysis and then a station analysis by completing the s
 
 ### Design Your Climate App
 
-
 Design a Flask API based on the queries that you just developed. To do so, use Flask to create your routes as follows:
-
-/
-
-Start at the homepage.
-
-List all the available routes.
+ List all the available routes.
 
 */api/v1.0/precipitation*
 
@@ -74,13 +66,19 @@ Return a JSON list of temperature observations for the previous year.
 
 Return a JSON list of the minimum temperature, the average temperature, and the maximum temperature for a specified start or start-end range.
 
-For a specified start, calculate TMIN, TAVG, and TMAX for all the dates greater than or equal to the start date.
+- For a specified start, calculate TMIN, TAVG, and TMAX for all the dates greater than or equal to the start date.
 
-For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
+- For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
 
-My on go search engine is [markdownguide](https://www.markdownguide.org/basic-syntax/)
+
+### References
+
+My on go search engine is [markdownguide](https://www.markdownguide.org/basic-syntax/) for Readme.
 
 <https://www.markdownguide.org/basic-syntax/>
 <markdownguide.com>
 
-[![sqlalchemy](/asets/images/sqlalchemy "sqlalchemy")]
+
+### SQLalchemy
+
+![sqlalchemy](https://miro.medium.com/v2/resize:fit:200/0*2gcZYBv6jmcbRtnY)

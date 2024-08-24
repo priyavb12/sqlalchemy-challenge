@@ -76,7 +76,7 @@ Return a JSON list of the minimum temperature, the average temperature, and the 
 My on go search engine is [markdownguide](https://www.markdownguide.org/basic-syntax/) for Readme.
 
 <https://www.markdownguide.org/basic-syntax/>
-<markdownguide.com>
+
 
 
 ### SQLalchemy

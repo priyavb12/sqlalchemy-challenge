@@ -17,13 +17,41 @@
  >>
  >>- Perform create, read, update, delete (CRUD) operations on data in a SQL database by using the SQLAlchemy object-relational mapper (ORM).
 
- 1. Connect to a SQL database by using SQLAlchemy.
+### Install Required Libraries:
 
-2. Perform basic SQL queries by using conn.execute().
+Make sure you have Python installed on your system.
+Install Flask and other necessary libraries by running the following command in your terminal:
 
-3. Create Python classes and objects.
+*pip install Flask sqlalchemy numpy*
 
-4. Perform create, read, update, delete (CRUD).
+### Database Setup:
+
+Ensure you have the SQLite database file **hawaii.sqlite** located in the Resources directory.
+The database should contain the necessary tables for the app to query (e.g., Measurement and Station).
+
+Run the Flask App:
+
+Save the provided Flask app code in a file named app.py in your project directory.
+Run the Flask app by executing the following command in the terminal:
+python app.py
+Accessing the API Endpoints:
+
+Once the Flask app is running, you can access the API endpoints using a web browser. Use the following routes to interact with the API:
+
+/api/v1.0/precipitation - Retrieve precipitation data.
+
+/api/v1.0/stations - Get a list of stations.
+
+/api/v1.0/tobs - Retrieve temperature observations.
+
+/api/v1.0/temp/start_date - Get temperature statistics for a specific start date.
+
+/api/v1.0/temp/<start>/<end> - Get temperature statistics for a date range.
+
+#### Interacting with the API:
+
+Make GET requests to the specified routes to retrieve the data in JSON format.
+Ensure to follow the format requirements for date inputs in the /api/v1.0/temp/<start>/<end> route (MMDDYYYY).
 
 ### Analyze and Explore the Climate Data
 
@@ -44,32 +72,46 @@ Perform a precipitation analysis and then a station analysis by completing the s
 ### Design Your Climate App
 
 Design a Flask API based on the queries that you just developed. To do so, use Flask to create your routes as follows:
- List all the available routes.
+
+### Create Flask app
+*app = Flask(__name__)*
+
+#### Create engine and reflect the tables
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+
+Base = automap_base()
+
+Base.prepare(engine)
+
+Measurement = Base.classes.measurement
+
+Station = Base.classes.station
+
+session = Session(engine)
+
+#### Define routes
+
+List all the available routes.
 
 */api/v1.0/precipitation*
 
-Convert the query results from your precipitation analysis (i.e. retrieve only the last 12 months of data) to a dictionary using date as the key and prcp as the value.
-
-Return the JSON representation of your dictionary.
+ route returns a JSON object with precipitation data.
 
 */api/v1.0/stations*
 
-Return a JSON list of stations from the dataset. 
+route returns a JSON list of stations.
 
   */api/v1.0/tobs*
 
-Query the dates and temperature observations of the most-active station for the previous year of data.
+route returns a JSON list of temperature observations.
 
-Return a JSON list of temperature observations for the previous year.
+ */api/v1.0/temp/start_date*
+ 
+route calculates temperature statistics for a specific start date.
 
-*/api/v1.0/<start> and /api/v1.0/<start>/<end>*
+*/api/v1.0/temp/<start>/<end>*
 
-Return a JSON list of the minimum temperature, the average temperature, and the maximum temperature for a specified start or start-end range.
-
-- For a specified start, calculate TMIN, TAVG, and TMAX for all the dates greater than or equal to the start date.
-
-- For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
-
+route calculates temperature statistics for a range of dates.
 
 ### References
 

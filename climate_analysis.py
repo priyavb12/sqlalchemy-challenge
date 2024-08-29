@@ -4,7 +4,8 @@
 # In[3]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
+import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('fivethirtyeight')
 import matplotlib.pyplot as plt
@@ -24,10 +25,10 @@ import datetime as dt
 
 
 # Python SQL toolkit and Object Relational Mapper
-    import sqlalchemy
-    from sqlalchemy.ext.automap import automap_base
-    from sqlalchemy.orm import Session
-    from sqlalchemy import create_engine, func
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, func
 
 
 # In[10]:

@@ -48,8 +48,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<temp/start<br/>"
-        f"/api/v1.0/temp/start/end<br/>"
+        f"/api/v1.0/<temp/start"
+        f"/api/v1.0/temp/start/end"
         f"<p>'start' and 'end' date should be in the format MMDDYYYY.</p>"
     )
 @app.route("/api/v1.0/precipitation")
@@ -90,37 +90,38 @@ def temp_monthly():
 
     return jsonify(temps=temps)
 
-@app.route("/api/v1.0/temp/<start>")
-@app.route("/api/v1.0/temp/<start>/<end>")
-def starts(start=None, end=None):
-
+@app.route("/api/v1.0/temp/start_date")
+def start_date(start):
     sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
-
-    if not end:
-        start = dt.datetime.strptime(start, "%m%d%Y")
-        results = session.query(*sel).\
-            filter(Measurement.date >= start).all()
-        
-        session.close()
-
-        temps = list(np.ravel(results))
-        return jsonify(temps=temps)
     
-    start = dt.datetime.strptime(start, "%m%d%Y")
-    end = dt.datetime.strptime(end, "%m%d%Y")
-
+    start_date = dt.datetime.strptime(start, "%m%d%Y")
+    
     results = session.query(*sel).\
-        filter(Measurement.date >= start).\
-        filter(Measurement.date <= end).all()
-    print(start)
-    print(end)
-    print(results)
-    
-    session.close()
+        filter(Measurement.date >= start_date).all()
 
     temps = list(np.ravel(results))
 
+    session.close()
+    
     return jsonify(temps=temps)
+
+@app.route("/api/v1.0/temp/<start>/<end>")
+def start_end_date(start, end):
+    sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    
+    start_date = dt.datetime.strptime(start, "%m%d%Y")
+    end_date = dt.datetime.strptime(end, "%m%d%Y")
+    
+    results = session.query(*sel).\
+        filter(Measurement.date >= start_date).\
+        filter(Measurement.date <= end_date).all()
+
+    temps = list(np.ravel(results))
+    
+    session.close()
+    
+    return jsonify(temps=temps)
+
 
 if __name__== "__main__":
     app.run(debug=True)
